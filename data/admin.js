@@ -56,13 +56,82 @@ let exportedMethods = {
         const movieCollection = await movies();
         
         let parsedId = ObjectId(id);
-        console.log(parsedId);
+       // console.log(parsedId);
         const moviego = await movieCollection.findOne({ _id: parsedId });
         if (moviego === null) throw 'No movie with that id';
         moviego._id = moviego._id.toString();
        
         return moviego;   
     },
+
+    async remove(id) {
+        if (!id) throw 'You must provide an id to search for';
+        if(typeof(id) !== 'string' || id == null) throw 'You must provide a correct id for movie';
+        const movieCollection = await movies();
+        let parsedId = ObjectId(id);
+        const deletionInfo = await movieCollection.deleteOne({ _id: parsedId });
+        if (deletionInfo.deletedCount === 0) {
+          throw `Could not delete user with id of ${id}`;
+        }
+        return true;
+      },
+
+      async updatemovie(id, updatedmovie) {
+        if (!id) throw 'You must provide an id to search for';
+        if(typeof(id) != 'string' || id == null) throw 'You must provide a correct id for movie';
+        const movieCollection = await movies();
+        const updatedmovieData = {}; 
+        if (updatedmovie.moviename) {
+          updatedmovieData.moviename = updatedmovie.moviename;
+        }  
+        if (updatedmovie.cast) {
+            updatedmovieData.cast = updatedmovie.cast;
+        }
+        if (updatedmovie.genre) {
+            updatedmovieData.genre = updatedmovie.genre;
+        }
+        if (updatedmovie.runtime) {
+            updatedmovieData.runtime= updatedmovie.runtime;
+        }
+        if (updatedmovie.plot) {
+            updatedmovieData.plot= updatedmovie.plot;
+        }
+        if (updatedmovie.rating) {
+            updatedmovieData.rating= updatedmovie.rating;
+        }if (updatedmovie.releaseTime) {
+            updatedmovieData.releaseTime= updatedmovie.releaseTime;
+        }
+        if (updatedmovie.selledTicket) {
+            updatedmovieData.selledTicket= updatedmovie.selledTicket;
+        }
+        if (updatedmovie.image) {
+            updatedmovieData.image= updatedmovie.image;
+        }
+        if (updatedmovie.id) {
+            updatedmovieData.id= updatedmovie.id;
+        }
+        let parsedId = ObjectId(id);
+        await movieCollection.updateOne({ _id: parsedId }, { $set: updatedmovieData });
+        return await this.get(id);
+      },
+      
+    async getmoviebyname(name){
+        if (!name) throw 'You must provide a name to search for';     
+        if(typeof(name) !== 'string' || name == null) throw 'You must provide a correct name for movie in get'; 
+        const movieCollection = await movies();
+
+        let parsedname = name;
+
+        //const themovie = await movieCollection.find({ moviename: parsedname });
+        const themovie = await movieCollection.find({moviename: parsedname}).toArray();
+
+        if (themovie === null) throw 'No movie with that name';
+       
+        return themovie;   
+    },
+
 };
+
+
 
 module.exports = exportedMethods;
