@@ -1,0 +1,32 @@
+
+        <form id="loginForm" action="/login" method="POST">
+        	<label>
+        		USERNAME:
+        		<input type="text" name="userName" id="userName">
+        	</label>
+        	<label>
+        		PASSWORD:
+        		<input type="text" name="Password" id="Password">
+        	</label>
+                <button type="submit">Login</button>
+        </form>
+        <a href="/register">
+                <button>Register</button>
+        </a>
+        <a href="/">
+                <button>Back to Home Page</button>
+        </a>
+        {{#if ifError}}
+	
+		<p id="error">
+			{{error}}
+		</p>
+	
+	{{/if}}
+        {{#if noSuchUser}}
+        
+                <p id="error">
+                        {{accounterror}}
+                </p>
+        
+        {{/if}}
