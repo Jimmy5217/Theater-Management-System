@@ -15,4 +15,5 @@ const getCollectionFn = (collection) => {
 
 module.exports = {
   movie: getCollectionFn('movie'),
+  users: getCollectionFn('users')
 };

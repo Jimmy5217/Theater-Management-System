@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const static = express.static(__dirname + '/public');
-
+const session = require('express-session');
 const configRoutes = require('./routes');
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
@@ -31,6 +31,22 @@ const rewriteUnsupportedBrowserMethods = (req, res, next) => {
     // let the next middleware run:
     next();
 };
+
+app.use(session({
+  name: 'AuthCookie',
+  secret: 'some secret string!',
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use('/private',(req, res, next) =>{
+    if(!req.session.AuthCookie){
+        res.status(403)
+        res.render('error/error')
+    }else{
+        next();
+    }
+});
 
 app.use('/public', static);
 app.use(express.json());
