@@ -4,7 +4,7 @@ const data = require('../data');
 const loginData = data.login;
 
 router.get('/', async(req, res) => {
-	res.render('private/private', {
+	res.render('profile/profile', {
 		user:req.session.AuthCookie
 	})
 	

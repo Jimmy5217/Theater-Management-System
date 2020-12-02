@@ -11,15 +11,5 @@ module.exports = {
 		}else{
 			return 'no user with this username'
 		}
-	}/*,
-	async getInfo(userName){
-		const userCollection = await users();
-		let user = userCollection.findOne({userName: userName})
-		if(user !== null){
-			return true
-		}else{
-			return false
-		}
-		//return user;
-	}*/
+	}
 }

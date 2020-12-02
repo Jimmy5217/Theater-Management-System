@@ -48,6 +48,17 @@ app.use('/private',(req, res, next) =>{
     }
 });
 
+app.use('/login',(req, res, next) =>{
+    if(req.session.AuthCookie){
+        if (req.session.AuthCookie.isAdmin == false)
+        {res.redirect('/userPage')}else if(req.session.AuthCookie.isAdmin == true){
+            res.redirect('/admin')
+        }
+    }else{
+        next();
+    }
+});
+
 app.use('/public', static);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
