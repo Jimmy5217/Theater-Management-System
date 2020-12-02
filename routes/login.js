@@ -38,9 +38,13 @@ router.post('/', async (req, res) =>{
 			return
 		}
 		if (entry.Password == Password){
-			//res.json(entry)
 			req.session.AuthCookie = entry;
-			res.redirect('/private')
+			if (entry.isAdmin == false){
+				res.redirect('/userPage')
+			}else if (entry.isAdmin == true){
+				res.redirect('/admin')
+			}
+			
 		}else{
 			res.status(401)
 			const ifError = true;
