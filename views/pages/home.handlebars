@@ -1,8 +1,28 @@
 <h2>Stevens Theater</h2>
 
-<div id="login">
+<div id="loginDiv">
     <a href="/login">Login</a>
 </div>
+
+<div id="profileAndLogoutDiv">
+    <a href="/profile">profile</a> <a href="/logout">Logout</a>
+</div>
+
+<script>
+    var loginDiv = document.getElementById("loginDiv");
+    var profileAndLogoutDiv = document.getElementById("profileAndLogoutDiv");
+    if ({{ loginState }}) {
+        //loginDiv.hide();
+        //profileAndLogoutDiv.show();
+        loginDiv.style.display = "none";
+        profileAndLogoutDiv.style.display = "";
+    }else {
+        //loginDiv.show();
+        //profileAndLogoutDiv.hide();
+        loginDiv.style.display = "";
+        profileAndLogoutDiv.style.display = "none";
+    }
+</script>
 
 <h3>Hot Line</h3>
 <hr />
@@ -22,15 +42,9 @@
 <div id="recommendation">
     {{#each ratingList}}
     <ul onclick="window.open('movie/{{id}}','_self')">
-        <li id = "myLi">{{moviename}}<span style="float:right">{{rating}}</span></li>
+        <li id="myLi">{{moviename}}<span style="float:right">{{rating}}</span></li>
 
     </ul>
 
     {{/each}}
 </div>
-<style>
-
-</style>
-<a href="/logout">
-        <button>Logout</button>
-</a>

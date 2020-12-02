@@ -1,4 +1,4 @@
-#login {
+#loginDiv {
 position:relative;
 top:0;
 right:0;
@@ -7,6 +7,16 @@ min-width:0;
 width:8%;
 float: right;
 }
+
+#profileAndLogoutDiv {
+	position:relative;
+	top:0;
+	right:0;
+	z-index:200;
+	min-width:0;
+	width:8%;
+	float: right;
+	}
 
 .movies{
 	float: left;

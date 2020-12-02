@@ -15,13 +15,20 @@ function orderSort(obj1, obj2) {
 };
 
 router.get('/', async (req, res) => {
+    var loginState = false;
+    if(req.session.AuthCookie){
+        loginState = true;
+    } else {
+        loginState = false
+    }
+
     try {
         let movieList = await moviesData.getAllMovies();
         
         var ratingList = JSON.parse(JSON.stringify(movieList));
         ratingList.sort(orderSort);
 
-        res.render('pages/home', { movieList: movieList, ratingList:ratingList, title: "Home" });
+        res.render('pages/home', { movieList: movieList, ratingList:ratingList, title: "Home", loginState: loginState});
     } catch (e) {
         res.status(404).json({ message: e });
     }
