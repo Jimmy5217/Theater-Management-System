@@ -40,6 +40,17 @@ app.use(rewriteUnsupportedBrowserMethods);
 app.engine('handlebars', handlebarsInstance.engine);
 app.set('view engine', 'handlebars');
 
+app.get('/admin', function (req, res, next) {
+    res.render('admin/admin', {layout: false});
+})
+
+app.get('/admin/search', function (req, res, next) {
+    res.render('admin/search', {layout: false});
+})
+app.get('/admin/addmoviepage', function (req, res, next) {
+    res.render('admin/addmoviepage', {layout: false});
+})
+
 configRoutes(app);
 
 app.listen(3000, () => {
