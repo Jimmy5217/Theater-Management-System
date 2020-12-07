@@ -78,6 +78,8 @@ app.get('/admin/addmoviepage', function (req, res, next) {
     res.render('admin/addmoviepage', {layout: false});
 })
 
+
+
 configRoutes(app);
 
 app.listen(3000, () => {
