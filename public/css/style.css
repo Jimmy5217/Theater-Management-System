@@ -1,4 +1,14 @@
-#login {
+.line-limit-length {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal!important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical; 
+}
+
+#loginDiv {
 position:relative;
 top:0;
 right:0;
@@ -7,6 +17,16 @@ min-width:0;
 width:8%;
 float: right;
 }
+
+#profileAndLogoutDiv {
+	position:relative;
+	top:0;
+	right:0;
+	z-index:200;
+	min-width:0;
+	width:8%;
+	float: right;
+	}
 
 .movies{
 	float: left;

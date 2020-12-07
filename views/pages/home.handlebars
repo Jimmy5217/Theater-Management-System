@@ -1,13 +1,33 @@
 <h2>Stevens Theater</h2>
 
-<div id="login">
+<div id="loginDiv">
     <a href="/login">Login</a>
 </div>
+
+<div id="profileAndLogoutDiv">
+    <a href="/profile">profile</a> <a href="/logout">Logout</a>
+</div>
+
+<script>
+    var loginDiv = document.getElementById("loginDiv");
+    var profileAndLogoutDiv = document.getElementById("profileAndLogoutDiv");
+    if ({{ loginState }}) {
+        //loginDiv.hide();
+        //profileAndLogoutDiv.show();
+        loginDiv.style.display = "none";
+        profileAndLogoutDiv.style.display = "";
+    }else {
+        //loginDiv.show();
+        //profileAndLogoutDiv.hide();
+        loginDiv.style.display = "";
+        profileAndLogoutDiv.style.display = "none";
+    }
+</script>
 
 <h3>Hot Line</h3>
 <hr />
 
-<div id="movies">
+{{!-- <div id="movies">
     {{#each movieList}}
     <ul class="movies">
         <li>{{moviename}}</li>
@@ -15,6 +35,28 @@
         <img id="movieImg" src={{image}} onclick="window.open('movie/{{id}}','_self')" />
     </ul>
     {{/each}}
+</div> --}}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {{#each movieList}}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{moviename}}</h5>
+                        <img id="movieImg" src="{{image}}" class="card-img-top" style="height: 400px; width: 300px">
+                        <p class="line-limit-length">{{plot}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="/movie/{{id}}" class="btn btn-primary">Order</a>
+                            <small class="text-muted">{{runtime}}</small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </div>
 
 <h3>Recommendation</h3>
@@ -22,12 +64,7 @@
 <div id="recommendation">
     {{#each ratingList}}
     <ul onclick="window.open('movie/{{id}}','_self')">
-        <li id = "myLi">{{moviename}}<span style="float:right">{{rating}}</span></li>
-
+        <li id="myLi">{{moviename}}<span style="float:right">{{rating}}</span></li>
     </ul>
-
     {{/each}}
 </div>
-<style>
-
-</style>
