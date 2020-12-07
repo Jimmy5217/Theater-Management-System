@@ -1,0 +1,17 @@
+<a class="get-home" href="/admin">back</a>
+
+<div>
+    
+    <section>
+        <h1>movie</h1>
+        {{#each movie}}
+        <article >
+            <h2><a href="/admin/{{_id}}">{{moviename}}</a></h2>
+            <p>{{plot}}</p>
+            <p>{{rating}}</p>
+        </article>
+        {{/each}}
+    </section>
+
+
+</div>

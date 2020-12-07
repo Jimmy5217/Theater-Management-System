@@ -65,8 +65,8 @@ router.post('/movie', async (req, res) => {
         moviesInfo.image,
         moviesInfo.id
       );
-      res.json(newmovie);
-      
+    //  res.json(newmovie);
+    res.render('admin/addsuccess', { movie: newmovie })
     } catch (e) {
       res.sendStatus(500);
     }
@@ -138,14 +138,38 @@ router.post('/movie', async (req, res) => {
     }
   });
 
-  router.get('/:name', async (req, res) => {
+  router.post('/search', async (req, res) => {
     try {
-      let movie = await moviesData.getmoviebyname(req.params.name);
-      console.dir(movie);
-      res.json(movie);
+      name = req.body.searchTerm;
+      let movie = await moviesData.getmoviebyname(name);
+
+   //   res.json(movie);
+   res.render('admin/showmovie', { movie: movie })
+
     } catch (e) {
       res.status(404).json({ error: 'User not found' });
     }
+  });
+
+  router.get('/:id', async (req, res) => {
+    const newid = req.params['id'];
+  
+    try {
+    
+      let movie = await moviesData.get(newid);
+
+      res.render('admin/moviedetail', { movie: movie })
+     // res.render('admin/moviedetail',  movie )
+  
+    } catch (e) {
+      const context = {
+          title: "Found : Error",
+          errors: e.message,
+      };
+      res.status(e.http_code);
+      res.render('error', context);
+  //   res.status(404).json({ error: 'can not found' });
+   }
   });
 
 
