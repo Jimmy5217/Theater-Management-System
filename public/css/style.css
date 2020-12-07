@@ -1,3 +1,13 @@
+.line-limit-length {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal!important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical; 
+}
+
 #loginDiv {
 position:relative;
 top:0;
