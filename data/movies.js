@@ -9,6 +9,13 @@ let exportedMethods = {
         if (!movieList) throw 'No movie in system!';
         return movieList;
     },
+
+    async getMovieById(id) {
+        const moviesCollection = await movies();
+        const aMovie = await moviesCollection.find({id: id});
+        if (!aMovie) throw 'No movie with this id';
+        return aMovie;
+    }
 };
 
 module.exports = exportedMethods;
