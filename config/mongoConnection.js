@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 const settings = {
   mongoConfig: {
     serverUrl: 'mongodb://localhost:27017/',
-    //serverUrl:'mongodb+srv://dbCS546:China1a2b3c@cluster0.ucuth.mongodb.net/THEATER MANAGEMENT SYSTEM?retryWrites=true&w=majority',
+    //serverUrl:'mongodb+srv://dbCS546:China1a2b3c@cluster0.ucuth.mongodb.net/CS546_group8?retryWrites=true&w=majority',
     database: 'CS546_group8'
   }
 };

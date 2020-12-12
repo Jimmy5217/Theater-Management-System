@@ -1,7 +1,11 @@
-const booksData = require('./books');
-const reviewsData = require('./reviews');
+const moviesData = require('./movies');
+const adminData = require('./admin');
+const register = require('./register')
+const login = require('./login')
 
 module.exports = {
-    books: booksData,
-    reviews: reviewsData
+   	movies: moviesData,
+    admin: adminData,
+    register: register,
+	login: login
 };
