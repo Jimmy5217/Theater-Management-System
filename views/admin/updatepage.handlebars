@@ -1,6 +1,11 @@
-<p>add the movie</p>
-<form id="addmovieForm" method="POST" action="/admin/movie">
+<p>update the movie</p>
+<form id="updatemovieForm" method="POST" action="/admin/update">
 
+    <label>
+        movieobjectid:
+        <input type="text" id="movieobjectid" name="movieobjectid">
+    </label>
+    <br></br>
     <label>
         moviename:
         <input type="text" id="moviename" name="moviename">
@@ -51,10 +56,7 @@
         <input type="text" id="id" name="id">
     </label>
     <br></br>
-    <button type="submit">Add movie</button>
+    <button type="submit">update movie</button>
 </form>
 
-
-
 <a class="get-home" href="/admin">back</a>
-
