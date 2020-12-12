@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const moviesData = require('../data/admin');
 
-
+//add movie
 router.post('/movie', async (req, res) => {
     
     let moviesInfo = req.body;
@@ -72,30 +72,34 @@ router.post('/movie', async (req, res) => {
     }
   });
 
-
-  router.delete('/:id', async (req, res) => {
-    if (!req.params.id) throw 'You must specify an ID to delete';
+//delete movie
+  router.post('/delete', async (req, res) => {
+    id = req.body.deletemovie;
+    if (!id) throw 'You must specify an ID to delete';
     try {
-      await moviesData.get(req.params.id);
+      await moviesData.get(id);
     } catch (e) {
       res.status(404).json({ error: 'movie not found' });
       return;
     }
   
     try {
-      await moviesData.remove(req.params.id);
-      res.json({"movieId": req.params.id, "deleted": true});
+      await moviesData.remove(id);
+    //  res.json({"movieId": id, "deleted": true});
+      res.render('admin/addsuccess', {"deleted": true})
     } catch (e) {
       res.sendStatus(500);
     }
   });
 
-
-  router.patch('/:id', async (req, res) => {
+//update movie
+  router.post('/update', async (req, res) => {
     const requestBody = req.body;
     let updatedObject = {};
     try {
-      const oldmovie = await moviesData.get(req.params.id);
+      Id = req.body.movieobjectid
+      //const oldmovie = await moviesData.get(req.params.id);
+      const oldmovie = await moviesData.get(Id);
       console.dir(oldmovie);
       if (requestBody.moviename && requestBody.moviename !== oldmovie.moviename)
         updatedObject.moviename = requestBody.moviename;
@@ -121,15 +125,17 @@ router.post('/movie', async (req, res) => {
       res.status(404).json({ error: 'movie not found' });
       return;
     }
-    //console.dir(updatedObject);
     if (Object.keys(updatedObject).length !== 0) {
       try {
         const updatedmovie = await moviesData.updatemovie(
-          req.params.id,
+          //req.params.id,
+          Id,
           updatedObject
         );
-        res.json(updatedmovie);
+      //  res.json(updatedmovie);
+      res.render('admin/addsuccess', {movie: updatedmovie})
       } catch (e) {
+        console.dir(e);
         res.status(500).json({ error: e });
       }
     } else {
@@ -138,6 +144,7 @@ router.post('/movie', async (req, res) => {
     }
   });
 
+  //get movie by name
   router.post('/search', async (req, res) => {
     try {
       name = req.body.searchTerm;

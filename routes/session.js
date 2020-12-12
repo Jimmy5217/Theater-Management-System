@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sessionData = require('../data/session');
 
+//add
 router.post('/session', async (req, res) => {
     
     let sessionInfo = req.body;
@@ -45,7 +46,8 @@ router.post('/session', async (req, res) => {
         sessionInfo.seat,
       );
       
-      res.json(newsession);
+     // res.json(newsession);
+      res.render('admin/addsuccess', { session: newsesssion })
       
     } catch (e) {
       console.dir(e);
@@ -53,18 +55,21 @@ router.post('/session', async (req, res) => {
     }
   });
 
-  router.delete('/:id', async (req, res) => {
-    if (!req.params.id) throw 'You must specify an ID to delete';
+  //delete session
+  router.post('/delete', async (req, res) => {
+    id = req.body.deletesession;
+    if (!id) throw 'You must specify an ID to delete';
     try {
-      await sessionData.get(req.params.id);
+      await sessionData.get(id);
     } catch (e) {
       res.status(404).json({ error: 'session not found' });
       return;
     }
   
     try {
-      await sessionData.remove(req.params.id);
-      res.json({"sessionId": req.params.id, "deleted": true});
+      await sessionData.remove(id);
+     // res.json({"sessionId": req.params.id, "deleted": true});
+     res.render('admin/addsuccess', {"deleted": true})
     } catch (e) {
       console.dir(e);
       res.sendStatus(500);

@@ -50,6 +50,19 @@ app.get('/admin/search', function (req, res, next) {
 app.get('/admin/addmoviepage', function (req, res, next) {
     res.render('admin/addmoviepage', {layout: false});
 })
+app.get('/admin/deletepage', function (req, res, next) {
+    res.render('admin/deletepage', {layout: false});
+})
+app.get('/admin/updatepage', function (req, res, next) {
+    res.render('admin/updatepage', {layout: false});
+})
+
+app.get('/admin/addsessionpage', function (req, res, next) {
+    res.render('admin/addsessionpage', {layout: false});
+})
+app.get('/admin/deletesessionpage', function (req, res, next) {
+    res.render('admin/deletesessionpage', {layout: false});
+})
 
 configRoutes(app);
 
