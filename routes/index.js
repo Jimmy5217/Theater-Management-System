@@ -7,8 +7,8 @@ const registerRoutes = require('./register');
 const loginRoutes = require('./login')
 const profileRoutes = require('./profile')
 const logoutRoutes = require('./logout')
-const userPageRoutes = require('./userPage')
 const changeUserInfoRoutes = require('./changeUserInfo')
+const commentsRoutes = require('./comments')
 
 
 const constructorMethod = (app) => {
@@ -22,9 +22,8 @@ const constructorMethod = (app) => {
   	app.use('/login', loginRoutes)
   	app.use('/profile', profileRoutes)
   	app.use('/logout', logoutRoutes)
-  	app.use('/userPage', userPageRoutes)
     app.use('/changeUserInfo', changeUserInfoRoutes)
-
+    app.use('/comments', commentsRoutes)
     app.use('*', (req, res) => {
         res.sendStatus(404);
     });    
