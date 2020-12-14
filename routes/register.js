@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
 			userName)
 		const entry = await loginData.login(userName, Password)
 		req.session.AuthCookie = entry;
-		res.redirect('/private')
+		res.redirect('/profile')
 	}catch(e){
 		res.status(500);
 	}

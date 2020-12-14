@@ -40,7 +40,7 @@ router.post('/', async (req, res) =>{
 		if (entry.Password == Password){
 			req.session.AuthCookie = entry;
 			if (entry.isAdmin == false){
-				res.redirect('/userPage')
+				res.redirect('/profile')
 			}else if (entry.isAdmin == true){
 				res.redirect('/admin')
 			}

@@ -1,0 +1,54 @@
+        
+        <form id="changeUserInfoForm" method="post">
+        	  
+            <label>
+                userName:
+                <input type="text" id="userName" name="userName">
+            </label>
+        	<label>
+        		Password:
+        		<input type="text" id="Password" name="Password">
+        	</label>
+                <label>
+                        firstName:
+                        <input type="text" id="firstName" name="firstName">
+                </label>
+        	<label>
+        		lastName:
+        		<input type="text" id="lastName" name="lastName">
+        	</label>
+        	<label>
+        		Email:
+        		<input type="text" id="Email" name="Email">
+        	</label>
+        	<label>
+        		Gender:
+        		<input type="text" id="Gender" name="Gender">
+        	</label>
+        	<label>
+        		DateOfBirthDay:
+        		<input type="text" id="DateOfBirthDay" name="DateOfBirthDay">
+        	</label>
+        	<label>
+        		DateOfBirthMonth:
+        		<input type="text" id="DateOfBirthMonth" name="DateOfBirthMonth">
+        	</label>
+        	<label>
+        		DateOfBirthYear:
+        		<input type="text" id="DateOfBirthYear" name="DateOfBirthYear">
+        	</label>
+        	<button type="submit">changeUserInfo</button>
+            <input hidden name="_method" value="PATCH"> 
+        </form>
+        <a href="/profile">
+        <button>Back</button>
+   </a>
+        {{#if ifErrors}}
+	       {{#each errors}}
+                <p class="error">
+                 {{this}}
+                </p>
+                {{/each}}
+	
+	{{/if}}
+    

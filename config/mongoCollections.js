@@ -16,8 +16,10 @@ const getCollectionFn = (collection) => {
 module.exports = {
   movie: getCollectionFn('movie'),
 
-  session: getCollectionFn('session')
+  session: getCollectionFn('session'),
 
-  users: getCollectionFn('users')
+  users: getCollectionFn('users'),
+
+  comments: getCollectionFn('comments')
 
 };
