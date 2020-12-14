@@ -6,7 +6,7 @@ const moviesData = require('../data/admin');
 router.post('/movie', async (req, res) => {
     
     let moviesInfo = req.body;
-  
+    try {
     if (!moviesInfo) {
       res.status(400).json({ error: 'You must provide data to create a movie' });
       return;
@@ -52,7 +52,7 @@ router.post('/movie', async (req, res) => {
         return;
     }
   
-    try {
+    
       const newmovie = await moviesData.create(
         moviesInfo.moviename,
         moviesInfo.cast,
@@ -68,7 +68,8 @@ router.post('/movie', async (req, res) => {
     //  res.json(newmovie);
     res.render('admin/addsuccess', { movie: newmovie })
     } catch (e) {
-      res.sendStatus(500);
+      res.render('admin/error', { error: e });
+    //  res.sendStatus(500);
     }
   });
 
@@ -79,7 +80,8 @@ router.post('/movie', async (req, res) => {
     try {
       await moviesData.get(id);
     } catch (e) {
-      res.status(404).json({ error: 'movie not found' });
+    //  res.status(404).json({ error: 'movie not found' });
+      res.render('admin/error', { error: 'movie not found'});
       return;
     }
   
@@ -149,12 +151,15 @@ router.post('/movie', async (req, res) => {
     try {
       name = req.body.searchTerm;
       let movie = await moviesData.getmoviebyname(name);
-
-   //   res.json(movie);
+      console.dir(movie)
+      if(movie.length == 0){
+        throw'can not found the movie'
+      }
    res.render('admin/showmovie', { movie: movie })
 
     } catch (e) {
-      res.status(404).json({ error: 'User not found' });
+      res.render('admin/error', { error: e});
+    //  res.status(404).json({ error: 'User not found' });
     }
   });
 

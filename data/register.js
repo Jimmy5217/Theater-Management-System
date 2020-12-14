@@ -6,21 +6,25 @@ const saltRounds = 16;
 
 module.exports = {
 	async register(firstName, lastName, Email, Gender, DateOfBirthDay, DateOfBirthMonth, DateOfBirthYear,
-		Password, userName){
+		Password, userName, isAdmin, historyPlay) {
 		const userCollection = await users();
 		//const hashPassword = await bcrypt.hash(Password)
+		if (!isAdmin) isAdmin = false;
+
+		if (!historyPlay) historyPlay = [];
+
 		const newuser = {
 			firstName: firstName,
 			lastName: lastName,
 			Email: Email,
 			Gender: Gender,
-			DateOfBirthDay:DateOfBirthDay,
+			DateOfBirthDay: DateOfBirthDay,
 			DateOfBirthMonth: DateOfBirthMonth,
 			DateOfBirthYear: DateOfBirthYear,
 			Password: Password,
 			userName: userName,
-			isAdmin: false,
-			historyPlay:[]
+			isAdmin: isAdmin,
+			historyPlay: historyPlay
 		}
 		const insertInfo = await userCollection.insertOne(newuser);
 		return insertInfo;
