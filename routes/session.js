@@ -62,7 +62,8 @@ router.post('/session', async (req, res) => {
     try {
       await sessionData.get(id);
     } catch (e) {
-      res.status(404).json({ error: 'session not found' });
+      res.render('admin/error', { error: 'session not found'});
+    //  res.status(404).json({ error: 'session not found' });
       return;
     }
   
