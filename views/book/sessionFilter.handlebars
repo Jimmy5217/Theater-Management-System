@@ -1,0 +1,20 @@
+
+    <h1>{{moviename}}</h1>
+//session picker filtered 
+    <div class="session-container">
+      <label for="session">Pick a seesion:</label>
+      <form method="post" id="session" action="/movie/{{id}}/session">
+        <select form="session" required name="showDate">
+          <option value="">---Pick the date---</option>
+          {{#each showDate}}
+          <option value={{this}}>{{this}}</option>
+          {{/each}}
+        </select>
+        <select form="session" required name="showTimes">
+          <option value="">---Pick the time---</option>
+          {{#each showTimes}}
+          <option value={{this}}>{{this}}</option>
+          {{/each}}
+        </select>
+      </form>
+    </div>

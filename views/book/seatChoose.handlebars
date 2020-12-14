@@ -1,0 +1,37 @@
+<h1>{{moviename}} at {{showDate}} {{showTime}}</h1>
+//session picker filtered 
+    <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>N/A</small>
+      </li>
+      <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+      </li>
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>
+    </ul>
+
+    
+    <div class="container">
+    <div class="screen"></div>
+    {{#each seat}}
+        <div class="row"><span class="seatIndex">{{@index}}</span></div>
+        {{#each this}}
+            {{#if this === 0}}
+            <div class="seat"><span class="seatIndex">{{@index}}</span></div>
+            {{else}}
+            <div class="seat occupied"><span class="seatIndex">{{@index}}</span></div>
+            {{/if}}
+        {{/each}}
+    {{/each}}
+    </div>
+
+    <p class="text">
+      You have selected <span id="count">0</span> seats for a price of $<span
+        id="total"
+        >0</span> <button type='submit'>ok</button>
+    </p>

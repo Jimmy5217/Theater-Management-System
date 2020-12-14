@@ -50,6 +50,7 @@ let exportedMethods = {
         return sessiongo;   
     },
 
+
     async remove(id) {
         if (!id) throw 'You must provide an id to search for';
         if(typeof(id) !== 'string' || id == null) throw 'You must provide a correct id for session';

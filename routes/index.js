@@ -8,7 +8,8 @@ const loginRoutes = require('./login')
 const profileRoutes = require('./profile')
 const logoutRoutes = require('./logout')
 const userPageRoutes = require('./userPage')
-const bookPageRoutes = require('./book')
+
+const sessionPickerRoutes = require('./sessionPicker')
 
 
 const constructorMethod = (app) => {
@@ -24,7 +25,9 @@ const constructorMethod = (app) => {
   	app.use('/logout', logoutRoutes)
     app.use('/userPage', userPageRoutes)
     
-    app.use('/book', bookPageRoutes)
+    app.use('/movie/:id', sessionPickerRoutes)
+
+    app.use('/movie/:id/:sessionId', )
 
     app.use('*', (req, res) => {
         res.sendStatus(404);
