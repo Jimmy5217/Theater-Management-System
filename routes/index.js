@@ -2,6 +2,7 @@ const homeRoutes = require('./home');
 const adminRoutes = require('./admin');
 
 const sessionRoutes = require('./session');
+const ticketRoutes = require('./adminTicket');
 
 const registerRoutes = require('./register');
 const loginRoutes = require('./login')
@@ -16,6 +17,7 @@ const constructorMethod = (app) => {
     app.use('/admin',adminRoutes);
 
     app.use('/session',sessionRoutes);
+    app.use('/adminTicket',ticketRoutes);
 
 
     app.use('/register',registerRoutes);

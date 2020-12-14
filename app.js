@@ -91,6 +91,13 @@ app.get('/admin/deletesessionpage', function (req, res, next) {
     res.render('admin/deletesessionpage', {layout: false});
 })
 
+app.get('/admin/orderticket', function (req, res, next) {
+    res.render('admin/orderticket', {layout: false});
+})
+app.get('/admin/refundticket', function (req, res, next) {
+    res.render('admin/refundticket', {layout: false});
+})
+
 configRoutes(app);
 
 app.listen(3000, () => {
