@@ -1,4 +1,5 @@
-<label>
+<div>
+   <label>
 		username:
 		<p>{{user.userName}}</p>
 	</label>
@@ -27,10 +28,44 @@
    		Gender:
    		<p>{{user.Gender}}</p>
    </label>
-   <label>
-   		historyPlay:
-   		<p>{{user.historyPlay}}</p>
-   </label>
+</div>
+<label>
+   	historyPlay:
+      {{#each user.historyPlay}}
+         <div>
+            <form class = "commentForm" id="{{this}}" method="POST" action="/comments">
+               <p>{{this}}</p>
+               <label>Comment:</label>
+               <input type="text" class="comment" name="comment" style = "width: 200px; height:100px">
+               <lable>Rating:</lable>
+               <select class="rating" name = "rating">
+                 <option value ="1">1</option>
+                 <option value ="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                 <option value="5">5</option>
+               </select>
+               <input type="text"  class="moviename" name="moviename" value="{{this}}" hidden>
+               <input type="text"  class="username" name="username" value="{{user.userName}}" hidden>
+               <button type="submit">Add a comment</button>
+            </form>
+         </div>
+      {{/each}}
+</label>
+<label>
+   Your Comments:
+   {{#each commentsList}}
+      <div style="border: 1px solid black">
+         <label>Movie:</label>
+         <p>{{this.movieName}}</p>
+         <label>Content:</label>
+         <p>{{this.content}}</p>
+         <label>Rating:</label>
+         <p>{{this.rating}}</p>
+      </div>
+   {{/each}}
+</label>
+<div>
    <a href="/">
          <button>Back To Homepage</button>
    </a>
@@ -40,3 +75,4 @@
    <a href="/logout">
    		<button>Logout</button>
    </a>
+</div>
