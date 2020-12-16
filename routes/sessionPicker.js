@@ -22,6 +22,7 @@ router.get('/:id', async (req, res) => {
           showTimes: showTimes
         });
     } catch (e) {
+      console.log(e);
       res.status(404).json({ error: 'movie not found with the id' });
       return;
     }
