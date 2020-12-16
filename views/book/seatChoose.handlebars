@@ -1,0 +1,41 @@
+<h1>{{moviename}}</h1>
+    <div class="session-container">
+      <p>Date: {{showDate}}   Time: {{showTimes}}</p>
+      <p>Ticket price: <span id="price">{{price}}</span></p>
+    </div>
+    <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>N/A</small>
+      </li>
+      <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+      </li>
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>
+    </ul>
+
+    <div class="container">
+    <div class="screen"></div>
+    {{#each seat}}
+        <div class="row"><span class="seatIndex">{{@index}}</span>
+        {{#each this}}
+            {{#equalZero this 0}}
+            <div class="seat"><span class="seatIndex">{{@index}}</span></div>
+            {{else}}
+            <div class="seat occupied"><span class="seatIndex">{{@index}}</span></div>
+            {{/equalZero}}
+        {{/each}}
+        </div>
+    {{/each}}
+    </div>
+    <p class="text">
+      You have selected <span id="count">0</span> seats for a price of $<span
+        id="total"
+        >0</span> <button type='submit' id='order'>ok</button>
+        <span id="sessionIdHide">{{sessionId}}</span>
+<link rel="stylesheet" href="/public/css/book.css">
+<script src="/public/js/staticBook.js" defer></script>

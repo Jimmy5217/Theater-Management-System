@@ -5,6 +5,7 @@ const session = require('express-session');
 const configRoutes = require('./routes');
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
+const path = require('path');
 
 const handlebarsInstance = exphbs.create({
     defaultLayout: 'main',
@@ -15,8 +16,15 @@ const handlebarsInstance = exphbs.create({
                 return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
 
             return new Handlebars.SafeString(JSON.stringify(obj));
+        },
+        equalZero: (seat,zero,options) => {
+            if(seat == zero){
+              return options.fn(this);
+            }else {
+              return options.inverse(this);
+            }
         }
-    },
+    }
 });
 
 const rewriteUnsupportedBrowserMethods = (req, res, next) => {
