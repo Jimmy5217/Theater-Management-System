@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
 	const newComment = req.body;
 	try{
 		const a = await commentsData.creatComment(
-			newComment.username,
+			newComment.userName,
 			newComment.moviename,
 			newComment.comment,
 			newComment.rating)
