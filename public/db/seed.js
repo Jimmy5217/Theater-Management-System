@@ -2,6 +2,9 @@ const dbConnection = require('../../config/mongoConnection');
 const data = require('../../data');
 const movies = data.movies;
 const register = data.register;
+const comments = data.comments;
+// const session = data.session;
+
 
 async function main() {
     const db = await dbConnection();
@@ -18,7 +21,22 @@ async function main() {
     await register.register("Jackson","Michael","god@stevens.edu","male","29","8","1967","greatsinger","greatsinger",false,["Saving Private Ryan","The Blind Side"]);
     await register.register("jack","chen","famousstar@google.com","female","1","3","1990","chenlong","chenlong",false,["The Blind Side","Avengers: Endgame"]);
 
-    
+    await comments.creatComment("4finalmvp","The Shawshank Redemption","It's very interesting, I like it","8.0");
+    await comments.creatComment("5champion","The Shawshank Redemption","The plot is very rich, the actors perform very well","7.6");
+    await comments.creatComment("chenlong","The Fast and the Furious","It's very interesting, I like it","8.7");
+    await comments.creatComment("4finalmvp","Saving Private Ryan","It's very interesting, I like it","7.7");
+    await comments.creatComment("greatsinger","Avengers: Endgame","It's very interesting, I like it","7.6");
+    await comments.creatComment("chenlong","3 Idiots","It's very interesting, I like it","7.9");
+    await comments.creatComment("5champion","Saving Private Ryan","The plot is very rich, the actors perform very well","7.7");
+    await comments.creatComment("greatsinger","Avengers: Endgame","It's very interesting, I like it","8.1");
+
+    // await session.create(1,2,34,"12/19/2020","10:00","[[1,1,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,1,1,0,0],[0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,0,1,0,0,0],[0,0,1,1,1,0,1,1,1,1,1,0],[0,0,1,1,1,1,1,1,1,1,0,0],[0,0,0,0,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,0,0,1,1]]");
+    // await session.create(1,1,35,"12/19/2020","10:00","[[1,1,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,1,1,0,0],[0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,0,1,0,0,0],[0,0,1,1,1,0,1,1,1,1,1,0],[0,0,1,1,1,1,1,1,1,1,0,0],[0,0,0,0,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,0,0,1,1]]");
+    // await session.create(1,1,34,"12/19/2020","10:00","[[1,1,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,1,1,0,0],[0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,0,1,0,0,0],[0,0,1,1,1,0,1,1,1,1,1,0],[0,0,1,1,1,1,1,1,1,1,0,0],[0,0,0,0,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,0,0,1,1]]");
+    // await session.create(1,2,43,"12/19/2020","10:00","[[1,1,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,1,1,0,0],[0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,0,1,0,0,0],[0,0,1,1,1,0,1,1,1,1,1,0],[0,0,1,1,1,1,1,1,1,1,0,0],[0,0,0,0,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,0,0,1,1]]");
+    // await session.create(1,3,39,"12/19/2020","10:00","[[1,1,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,1,1,0,0],[0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,0,1,0,0,0],[0,0,1,1,1,0,1,1,1,1,1,0],[0,0,1,1,1,1,1,1,1,1,0,0],[0,0,0,0,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,0,0,1,1]]");
+    // await session.create(1,4,38,"12/19/2020","10:00","[[1,1,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,1,1,0,0],[0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,0,1,0,0,0],[0,0,1,1,1,0,1,1,1,1,1,0],[0,0,1,1,1,1,1,1,1,1,0,0],[0,0,0,0,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,0,0,1,1]]");
+
     await db.serverConfig.close();
 }
 
