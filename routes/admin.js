@@ -65,7 +65,6 @@ router.post('/movie', async (req, res) => {
         moviesInfo.image,
         moviesInfo.id
       );
-    //  res.json(newmovie);
     res.render('admin/addsuccess', { movie: newmovie })
     } catch (e) {
       res.render('admin/error', { error: e });
@@ -102,7 +101,7 @@ router.post('/movie', async (req, res) => {
       Id = req.body.movieobjectid
       //const oldmovie = await moviesData.get(req.params.id);
       const oldmovie = await moviesData.get(Id);
-      console.dir(oldmovie);
+
       if (requestBody.moviename && requestBody.moviename !== oldmovie.moviename)
         updatedObject.moviename = requestBody.moviename;
       if (requestBody.cast && requestBody.cast !== oldmovie.cast)
@@ -124,7 +123,8 @@ router.post('/movie', async (req, res) => {
       if (requestBody.id && requestBody.id !== oldmovie.id)
         updatedObject.id = requestBody.id;
     } catch (e) {
-      res.status(404).json({ error: 'movie not found' });
+      res.render('admin/error', { error: 'movie not found'})
+    //  res.status(404).json({ error: 'movie not found' });
       return;
     }
     if (Object.keys(updatedObject).length !== 0) {
@@ -138,7 +138,7 @@ router.post('/movie', async (req, res) => {
       res.render('admin/addsuccess', {movie: updatedmovie})
       } catch (e) {
         console.dir(e);
-        res.status(500).json({ error: e });
+        res.render('admin/error', { error: e})
       }
     } else {
       
@@ -151,7 +151,6 @@ router.post('/movie', async (req, res) => {
     try {
       name = req.body.searchTerm;
       let movie = await moviesData.getmoviebyname(name);
-      console.dir(movie)
       if(movie.length == 0){
         throw'can not found the movie'
       }
@@ -164,15 +163,12 @@ router.post('/movie', async (req, res) => {
   });
 
   router.get('/:id', async (req, res) => {
-    const newid = req.params['id'];
-  
-    try {
     
+      const newid = req.params['id'];
+    try {  
       let movie = await moviesData.get(newid);
-
       res.render('admin/moviedetail', { movie: movie })
-     // res.render('admin/moviedetail',  movie )
-  
+     
     } catch (e) {
       const context = {
           title: "Found : Error",

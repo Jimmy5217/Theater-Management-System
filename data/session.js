@@ -19,7 +19,7 @@ let exportedMethods = {
         let newsession = {
             roomNumber: roomNumber,
             movieId: movieId,
-            price: price,
+            price: parseInt(price),
             showDate: showDate,
             showTimes: showTimes,
             seat:seat,
@@ -40,10 +40,13 @@ let exportedMethods = {
         if (!id) throw 'You must provide an id to search for';
         if(typeof(id) !== 'string' || id == null) throw 'You must provide a correct id for session in get';
         const sessionCollection = await moviesession();
-        
-        let parsedId = ObjectId(id);
-       // console.log(parsedId);
-        const sessiongo = await sessionCollection.findOne({ _id: parsedId });
+        let sessiongo = null;
+        try{
+        let parsedId = new ObjectId(id);
+        sessiongo = await sessionCollection.findOne({ _id: parsedId });
+        }catch(e){
+
+        }
         if (sessiongo === null) throw 'No session with that id';
         sessiongo._id = sessiongo._id.toString();
        

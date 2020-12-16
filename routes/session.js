@@ -6,7 +6,7 @@ const sessionData = require('../data/session');
 router.post('/session', async (req, res) => {
     
     let sessionInfo = req.body;
-  
+    try {
     if (!sessionInfo) {
       res.status(400).json({ error: 'You must provide data to create a session' });
       return;
@@ -36,7 +36,6 @@ router.post('/session', async (req, res) => {
         return;
     }
   
-    try {
       const newsession = await sessionData.create(
         sessionInfo.roomNumber,
         sessionInfo.movieId,
@@ -44,13 +43,13 @@ router.post('/session', async (req, res) => {
         sessionInfo.showDate,
         sessionInfo.showTimes,
         sessionInfo.seat,
-      );
-      
+      );  
      // res.json(newsession);
-      res.render('admin/addsuccess', { session: newsesssion })
+      res.render('admin/addsuccess', { session: newsession })
       
     } catch (e) {
       console.dir(e);
+      res.render('admin/error', { error: e});
       res.sendStatus(500);
     }
   });
