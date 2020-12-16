@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
+const register = data.register;
 const loginData = data.login;
 
 router.get('/', async (req, res) => {
@@ -23,6 +24,7 @@ router.post('/', async (req, res) =>{
 	const Password = loginInfo.Password;
 	try {
 		const entry = await loginData.login(userName)
+		const userInfo = await register.getUser(userName)
 		/*if (entry == true){
 			req.session.AuthCookie = loginInfo;
 			res.redirect('/private')
@@ -38,13 +40,15 @@ router.post('/', async (req, res) =>{
 			return
 		}
 		if (entry.Password == Password){
-			req.session.AuthCookie = entry;
+			//req.session.AuthCookie = entry;
+			req.session.AuthCookie = {userInfo: userInfo}
+			//console.log(req.session.AuthCookie.userInfo.Email)
 			if (entry.isAdmin == false){
 				res.redirect('/')
 			}else if (entry.isAdmin == true){
 				res.redirect('/admin')
 			}
-			
+
 		}else{
 			res.status(401)
 			const ifError = true;

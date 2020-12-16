@@ -28,5 +28,17 @@ module.exports = {
 		}
 		const insertInfo = await userCollection.insertOne(newuser);
 		return insertInfo;
-	}
+	},
+
+	async getUser(username) {
+		if (!username) throw 'You must provide an username to search for';
+		if (typeof (username) !== 'string') throw 'You must provide an username to search for';
+		const userCollection = await users();
+		try {
+			user = await userCollection.findOne({ userName: username });
+		} catch (e) {
+
+		}
+		return user;
+	},
 }
