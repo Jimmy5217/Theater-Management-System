@@ -57,9 +57,9 @@ router.patch('/', async (req, res) => {
   		if (requestBody.Password && requestBody.Password !== oldUser.Password){
       		updatedObject.Password = requestBody.Password;
   		}
-  		if (requestBody.userName && requestBody.userName !== oldUser.userName){
+  		/*if (requestBody.userName && requestBody.userName !== oldUser.userName){
       		updatedObject.userName = requestBody.userName;
-  		}
+  		}*/
   		
   	} catch (e) {
     	res.status(404).json({ error: 'Book not found' });

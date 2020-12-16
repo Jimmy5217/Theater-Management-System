@@ -29,45 +29,47 @@
    		<p>{{user.Gender}}</p>
    </label>
 </div>
-<div>
-   <label>
-   	historyPlay:
-      {{#each user.historyPlay}}
-         <div>
-            <form class = "commentForm" id="{{this}}" method="POST" action="/comments">
-               <p>{{this}}</p>
-               <label>Comment:</label>
-               <input type="text" class="comment" name="comment" style = "width: 200px; height:100px">
-               <lable>Rating:</lable>
-               <select class="rating" name = "rating">
-                 <option value ="1">1</option>
-                 <option value ="2">2</option>
-                 <option value="3">3</option>
-                 <option value="4">4</option>
-                 <option value="5">5</option>
-               </select>
-               <input type="text"  class="moviename" name="moviename" value="{{this}}" hidden>
-               <input type="text"  name="userName" value="{{../user.userName}}" hidden>
-               <button type="submit">Add a comment</button>
-            </form>
-         </div>
-      {{/each}}
-   </label>
-</div>
-<div>
-   <label>
-      Your Comments:
-      {{#each commentsList}}
-         <div style="border: 1px solid black">
-            <label>Movie:</label>
-            <p>{{this.movieName}}</p>
-            <label>Content:</label>
-            <p>{{this.content}}</p>
-            <label>Rating:</label>
-            <p>{{this.rating}}</p>
-         </div>
-      {{/each}}
-   </label>
+<div id="profileContainer">
+   <div id="historyPlayDiv">
+      <label>
+      	historyPlay:
+         {{#each user.historyPlay}}
+            <div>
+               <form class = "commentForm" id="{{this}}" method="POST" action="/comments">
+                  <p>{{this}}</p>
+                  <label>Comment:</label>
+                  <textarea cols="5" rows="20" class="comment" name="comment"></textarea>
+                  <lable>Rating:</lable>
+                  <select class="rating" name = "rating">
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <input type="text"  class="moviename" name="moviename" value="{{this}}" hidden>
+                  <input type="text"  name="userName" value="{{../user.userName}}" hidden>
+                  <button type="submit">Add a comment</button>
+               </form>
+            </div>
+         {{/each}}
+      </label>
+   </div>
+   <div id="commentsDiv">
+      <label>
+         Your Comments:
+         {{#each commentsList}}
+            <div style="border: 1px solid black; width: 400px">
+               <label>Movie:</label>
+               <p>{{this.movieName}}</p>
+               <label>Content:</label>
+               <p>{{this.content}}</p>
+               <label>Rating:</label>
+               <p>{{this.rating}}</p>
+            </div>
+         {{/each}}
+      </label>
+   </div>
 </div>
 <div style="position:absolute; top:0px; right:0px">
    <a href="/">

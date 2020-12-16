@@ -47,9 +47,9 @@ module.exports = {
 		if (updateInfo.Password){
 			newUser.Password = updateInfo.Password
 		};
-		if (updateInfo.userName){
+		/*if (updateInfo.userName){
 			newUser.userName = updateInfo.userName
-		};
+		};*/
 		const userGo = userCollection.findOne({_id: parsedId});
     	
     	const updatedInfo = await userCollection.updateOne(
