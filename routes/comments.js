@@ -3,12 +3,12 @@ const router = express.Router();
 const data = require('../data');
 const commentsData = data.comments;
 
-router.get('/', async (req, res) => {
-	/*const userName =
-	const commentsList = await commentData.getAll(userName)*/
+/*router.get('/', async (req, res) => {
+	const userName =
+	const commentsList = await commentData.getAll(userName)
 	res.render('comments/comments')
 })
-
+*/
 router.post('/', async (req, res) => {
 	const newComment = req.body;
 	try{

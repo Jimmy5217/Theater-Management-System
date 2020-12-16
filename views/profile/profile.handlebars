@@ -29,7 +29,8 @@
    		<p>{{user.Gender}}</p>
    </label>
 </div>
-<label>
+<div>
+   <label>
    	historyPlay:
       {{#each user.historyPlay}}
          <div>
@@ -51,21 +52,24 @@
             </form>
          </div>
       {{/each}}
-</label>
-<label>
-   Your Comments:
-   {{#each commentsList}}
-      <div style="border: 1px solid black">
-         <label>Movie:</label>
-         <p>{{this.movieName}}</p>
-         <label>Content:</label>
-         <p>{{this.content}}</p>
-         <label>Rating:</label>
-         <p>{{this.rating}}</p>
-      </div>
-   {{/each}}
-</label>
+   </label>
+</div>
 <div>
+   <label>
+      Your Comments:
+      {{#each commentsList}}
+         <div style="border: 1px solid black">
+            <label>Movie:</label>
+            <p>{{this.movieName}}</p>
+            <label>Content:</label>
+            <p>{{this.content}}</p>
+            <label>Rating:</label>
+            <p>{{this.rating}}</p>
+         </div>
+      {{/each}}
+   </label>
+</div>
+<div style="position:absolute; top:0px; right:0px">
    <a href="/">
          <button>Back To Homepage</button>
    </a>
