@@ -5,7 +5,7 @@ const { ObjectID, ObjectId} = require('mongodb');
 
 let exportedMethods = {
 
-    async create(roomNumber, movieId, price, showDate, showTimes,seat,){
+    async create(roomNumber, movieId, price, showDate, showTimes,seat){
 
         if (!roomNumber )throw 'You must provide a roomNumber for session';
         if (!movieId) throw 'You must provide a info for session';
