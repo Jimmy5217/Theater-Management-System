@@ -82,16 +82,21 @@ module.exports = {
         return updateInfo;
     },
 
-	async updateHistoryPlay(userName,movieId,sessionId, movieName) {
+	async updateHistoryPlay(userName,movieId,sessionId, movieName, ticketCount) {
         const userCollection = await users();
         const theUser = await userData.getUser(userName);
-        // console.log("I am here");
 		const newPlay = {
             movieName: movieName,
-            movieId: movieId,
-            sessionId: sessionId   
+            movieId: parseInt(movieId),
+            sessionId: ObjectId(sessionId),
+            ticketCount: parseInt(ticketCount)   
         }
-        const replaceData = await theUser.historyPlay.push(newPlay);
+        let replaceData = await theUser.historyPlay;
+        if (replaceData == null || replaceData.length === 0) {
+            replaceData = [];
+        }
+        replaceData.push(newPlay);
+        console.log(replaceData);
         const updateInfo = await  userCollection.update(
             {userName: userName}, 
             {$set: {historyPlay : replaceData} }
