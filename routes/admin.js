@@ -63,7 +63,7 @@ router.post('/movie', async (req, res) => {
         moviesInfo.releaseTime,
         moviesInfo.selledTicket,
         moviesInfo.image,
-        moviesInfo.id
+        parseInt(moviesInfo.id)
       );
     res.render('admin/addsuccess', { movie: newmovie })
     } catch (e) {
