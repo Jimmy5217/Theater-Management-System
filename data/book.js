@@ -2,6 +2,7 @@ const mongoCollections = require('../config/mongoCollections')
 const users = mongoCollections.users;
 const movie = mongoCollections.movie;
 const session = mongoCollections.session;
+const userData = require('./register');
 const bcrypt = require('bcrypt');
 const { ObjectId } = require('mongodb');
 
@@ -79,16 +80,21 @@ module.exports = {
             {$set: {seat : replaceSeat} }
             );
         return updateInfo;
-    }
+    },
 
-	// async updateHistoryPlay(user,movieId,sessionId) {
-	// 	const userCollection = await users();
-	// 	const newPlay = {
-	// 		sessionId: sessionId,
-    //         movieId: movieId
-    //     }
-    //     //待修改
-    //     const insertInfo = await userCollection.findOne({userName: userName}).historyPlay.push(newPlay);
-    //     return insertInfo;
-    // }    
+	async updateHistoryPlay(userName,movieId,sessionId, movieName) {
+        const userCollection = await users();
+        const theUser = await userData.getUser(userName);
+		const newPlay = {
+            movieName: movieName,
+            movieId: movieId,
+            sessionId: sessionId   
+        }
+        const replaceData = await theUser.historyPlay.push(newPlay);
+        const updateInfo = await  userCollection.update(
+            {userName: userName}, 
+            {$set: {historyPlay : replaceData} }
+            );
+        return updateInfo;
+    }    
 }
