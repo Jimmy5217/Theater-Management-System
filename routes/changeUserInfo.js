@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 
 router.patch('/', async (req, res) => {
 	const requestBody = req.body;
-	const userId = req.session.AuthCookie._id.toString()
+	const userId = req.session.AuthCookie.userInfo._id.toString()
 	let newUserName = requestBody.userName
 	const errors = []
 	const b = await loginData.login(newUserName)
@@ -68,8 +68,8 @@ router.patch('/', async (req, res) => {
 
   	try {
     	const updatedUser = await loginData.update(userId, updatedObject);
-    	const entry = await loginData.getById(userId)
-		req.session.AuthCookie = entry;
+    	const userInfo = await loginData.getById(userId)
+		req.session.AuthCookie = {userInfo: userInfo};
     	res.redirect('/profile')
   	} catch (e) {
     	res.status(500).json({ error: e });
