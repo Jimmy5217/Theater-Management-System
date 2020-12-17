@@ -8,32 +8,26 @@ router.post('/session', async (req, res) => {
     let sessionInfo = req.body;
     try {
     if (!sessionInfo) {
-      res.status(400).json({ error: 'You must provide data to create a session' });
-      return;
+      throw 'You must provide data to create a session'
     }
     if (!sessionInfo.roomNumber) {
-      res.status(400).json({ error: 'You must provide a roomNumber' });
-      return;
+      throw 'You must provide data to create a roomNumber'
     }
     if (!sessionInfo.movieId) {
-      res.status(400).json({ error: 'You must provide a movieId' });
-      return;
+      throw 'You must provide data to create a movieId'
     }
     if (!sessionInfo.price) {
-      res.status(400).json({ error: 'You must provide a price' });
-      return;
+      throw 'You must provide data to create a price'
     }
     if (!sessionInfo.showDate) {
-      res.status(400).json({ error: 'You must provide a showDate' });
-      return;
+    
+      throw 'You must provide data to create a howDate'
     }
     if (!sessionInfo.showTimes) {
-      res.status(400).json({ error: 'You must provide a showTimes' });
-      return;
+      throw 'You must provide data to create a showTimes'
     }
     if (!sessionInfo.seat) {
-        res.status(400).json({ error: 'You must provide a seat' });
-        return;
+        throw 'You must provide data to create a seat'
     }
   
       const newsession = await sessionData.create(

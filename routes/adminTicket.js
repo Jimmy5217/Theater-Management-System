@@ -27,6 +27,9 @@ router.post('/ticket', async (req, res) => {
         }
 
         await ticketData.orderticket(requestBody.userId, requestBody.sessionid, requestBody.row, requestBody.seat)
+
+        await ticketData. updateHistoryPlay(requestBody.userId, requestBody.sessionid);
+
         res.render('admin/addsuccess', { addsuccess: true })
     } catch (e) {
         console.dir(e);
