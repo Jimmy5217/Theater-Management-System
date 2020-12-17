@@ -8,8 +8,11 @@ let exportedMethods = {
     async create(roomNumber, movieId, price, showDate, showTimes,seat,){
 
         if (!roomNumber )throw 'You must provide a roomNumber for session';
-        if (!movieId) throw 'You must provide a info for session';
+        if (isNaN(parseInt(roomNumber))) throw 'You must provide a number for roomNumber';
+        if (!movieId) throw 'You must provide a movieId for session';
+        if (isNaN(parseInt(movieId))) throw 'You must provide a number for movieId';
         if (!price) throw 'You must provide a price for session';
+        if (isNaN(parseInt(price))) throw 'You must provide a number for price';
         if(!showDate) throw 'You must provide a showDate for session';
         if (!showTimes)throw 'You must provide showTimes for session';
         if (!seat)throw 'You must provide seat for session';
@@ -17,8 +20,8 @@ let exportedMethods = {
         const sessionCollection = await moviesession();
         
         let newsession = {
-            roomNumber: roomNumber,
-            movieId: movieId,
+            roomNumber: parseInt(roomNumber),
+            movieId: parseInt(movieId),
             price: parseInt(price),
             showDate: showDate,
             showTimes: showTimes,

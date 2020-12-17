@@ -23,6 +23,7 @@ let exportedMethods = {
         if (!selledTicket)throw 'You must provide selledTicket for movie';
         if (!image)throw 'You must provide image for movie';
         if (!id)throw 'You must provide id for movie';
+        if (isNaN(parseInt(id))) throw 'You must provide a number for id';
     
         const moviesCollection = await movies();
     
@@ -36,16 +37,13 @@ let exportedMethods = {
             releaseTime:releaseTime,
             selledTicket:selledTicket,
             image:image,
-            id:id
-            //reviews: []
+            id:parseInt(id)
         };
     
         const insertInfo = await moviesCollection.insertOne(newmovies);
         if (insertInfo.insertedCount === 0) throw 'Could not creat movie';
-        const newId = insertInfo.insertedId;
-    
+        const newId = insertInfo.insertedId;  
         const movie = await this.get(newId.toString());
-
         return movie;
     
     },
@@ -119,9 +117,7 @@ let exportedMethods = {
         if (!name) throw 'You must provide a name to search for';     
         if(typeof(name) !== 'string' || name == null) throw 'You must provide a correct name for movie in get'; 
         const movieCollection = await movies();
-
         let parsedname = name;
-
         //const themovie = await movieCollection.find({ moviename: parsedname });
         const themovie = await movieCollection.find({moviename: parsedname}).toArray();
 

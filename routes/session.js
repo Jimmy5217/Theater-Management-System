@@ -50,7 +50,7 @@ router.post('/session', async (req, res) => {
     } catch (e) {
       console.dir(e);
       res.render('admin/error', { error: e});
-      res.sendStatus(500);
+      //res.sendStatus(500);
     }
   });
 
