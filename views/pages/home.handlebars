@@ -47,7 +47,7 @@
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">{{moviename}}</h5>
-                        <img id="movieImg" src="{{image}}" class="card-img-top" style="height: 400px; width: 300px">
+                        <img src="{{image}}" class="card-img-top" alt="..." style="height: 400px; width: 300px">
                         <p class="line-limit-length">{{plot}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="/movie/{{id}}" class="btn btn-primary">Order</a>
@@ -67,7 +67,7 @@
 <div id="recommendation">
     {{#each ratingList}}
     <ul onclick="window.open('movie/{{id}}','_self')">
-        <li id="myLi">{{moviename}}<span style="float:right">{{rating}}</span></li>
+        <li>{{moviename}}<span style="float:right">{{rating}}</span></li>
     </ul>
     {{/each}}
 </div>
