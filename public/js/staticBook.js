@@ -5,6 +5,7 @@
         const count = document.querySelector("#count");
         const total = document.querySelector("#total");
         const ticketPrice = + document.querySelector("#price").innerText;
+        const movieName = document.querySelector('#moviename').innerText;
     
         populateUI();
     
@@ -69,7 +70,8 @@
                 data: {
                     bookSeat: updateSeatIndex,
                     sessionId: sessionId,
-                    ticketCount: count.innerText
+                    ticketCount: count.innerText,
+                    movieName: movieName
                 },
                 success: function() {
                     // alert('success!');

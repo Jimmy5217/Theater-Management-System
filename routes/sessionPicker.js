@@ -62,12 +62,13 @@ router.post('/:id/book', async(req, res) => {
         
         let bookSeat = req.body.bookSeat;
         let count = req.body.ticketCount;
-        // let user = req.body.user;
+        let movieName = req.body.movieName;
         let sessionId = req.body.sessionId;
+        let userName = req.session.AuthCookie.userName;
         let movieId = req.params.id;
         const bookResult = await bookData.updateSeat(sessionId, bookSeat);
         const movieSellResult = await bookData.updateMovieSell(movieId, count);
-        // const historyPlayResult = await bookData.updateHistoryPlay(user, movieId, sessionId);
+        const historyPlayResult = await bookData.updateHistoryPlay(userName, movieId, sessionId, movieName);
         res.redirect('/profile');
     } catch (e) {
       res.status(404).json({ error: 'Tickets book fail' });
