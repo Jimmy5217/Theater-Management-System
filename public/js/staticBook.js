@@ -72,10 +72,10 @@
                     sessionId: sessionId,
                     ticketCount: count.innerText,
                     movieName: movieName
-                },
-                success: function() {
-                    // alert('success!');
                 }
+            }).done( function() {
+                window.location.href = '/profile';
+                sessionStorage.clear();
             })
 
         })

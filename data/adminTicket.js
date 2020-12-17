@@ -101,7 +101,8 @@ let exportedMethods = {
         const newPlay = {
             moviename: moviename,
             movieId: sessioninformation.movieId,
-            sessionid: sessionid   
+            sessionid: sessionid,
+            ticketCount: 1   
         }
 
         let parsedId = ObjectId(theUser._id);
