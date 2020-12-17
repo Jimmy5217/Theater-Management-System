@@ -46,7 +46,7 @@ module.exports = {
 
     async updateMovieSell(movieId, count) {
         if (!movieId) throw 'You must provide an id to search for';
-        if(typeof(movieId) !== 'string' || id == null) throw 'You must provide a correct id for movie to book tickets';
+        if(typeof(movieId) !== 'string') throw 'You must provide a correct id for movie to book tickets';
         const movieCollection = await movie();
         const ticketCount = parseInt(count);
         const updateInfo = await movieCollection.update(
@@ -85,6 +85,7 @@ module.exports = {
 	async updateHistoryPlay(userName,movieId,sessionId, movieName) {
         const userCollection = await users();
         const theUser = await userData.getUser(userName);
+        // console.log("I am here");
 		const newPlay = {
             movieName: movieName,
             movieId: movieId,
