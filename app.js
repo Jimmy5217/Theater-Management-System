@@ -56,6 +56,54 @@ app.use('/private',(req, res, next) =>{
     }
 });
 
+app.use('/movie/1',(req, res, next) =>{
+    if(!req.session.AuthCookie){
+        res.redirect('/login')
+    }else{
+        next();
+    }
+});
+
+app.use('/movie/2',(req, res, next) =>{
+    if(!req.session.AuthCookie){
+        res.redirect('/login')
+    }else{
+        next();
+    }
+});
+
+app.use('/movie/3',(req, res, next) =>{
+    if(!req.session.AuthCookie){
+        res.redirect('/login')
+    }else{
+        next();
+    }
+});
+
+app.use('/movie/4',(req, res, next) =>{
+    if(!req.session.AuthCookie){
+        res.redirect('/login')
+    }else{
+        next();
+    }
+});
+
+app.use('/movie/5',(req, res, next) =>{
+    if(!req.session.AuthCookie){
+        res.redirect('/login')
+    }else{
+        next();
+    }
+});
+
+app.use('/movie/6',(req, res, next) =>{
+    if(!req.session.AuthCookie){
+        res.redirect('/login')
+    }else{
+        next();
+    }
+});
+
 app.use('/login',(req, res, next) =>{
     if(req.session.AuthCookie){
         if (req.session.AuthCookie.isAdmin == false)
