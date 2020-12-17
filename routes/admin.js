@@ -8,48 +8,39 @@ router.post('/movie', async (req, res) => {
     let moviesInfo = req.body;
     try {
     if (!moviesInfo) {
-      res.status(400).json({ error: 'You must provide data to create a movie' });
-      return;
+      // res.status(400).json({ error: 'You must provide data to create a movie' });
+      // return;
+      throw 'You must provide data to create a movie'
     }
     if (!moviesInfo.moviename) {
-      res.status(400).json({ error: 'You must provide a moviename' });
-      return;
+      throw 'You must provide a moviename'
     }
     if (!moviesInfo.cast) {
-      res.status(400).json({ error: 'You must provide a cast' });
-      return;
+      throw 'You must provide a cast'
     }
     if (!moviesInfo.genre) {
-      res.status(400).json({ error: 'You must provide a genre' });
-      return;
+      throw 'You must provide a genre'
     }
     if (!moviesInfo.runtime) {
-      res.status(400).json({ error: 'You must provide a runtime' });
-      return;
+      throw 'You must provide a runtime'
     }
     if (!moviesInfo.plot) {
-      res.status(400).json({ error: 'You must provide a plot' });
-      return;
+      throw 'You must provide a plot'
     }
     if (!moviesInfo.rating) {
-        res.status(400).json({ error: 'You must provide a rating' });
-        return;
+        throw 'You must provide  a rating'
     }
     if (!moviesInfo.releaseTime) {
-        res.status(400).json({ error: 'You must provide a releaseTime' });
-        return;
+        throw 'You must provide a releaseTime'
     }
     if (!moviesInfo.selledTicket) {
-        res.status(400).json({ error: 'You must provide a selledTicket' });
-        return;
+        throw 'You must provide a selledTicket'
     }
     if (!moviesInfo.image) {
-        res.status(400).json({ error: 'You must provide a image' });
-        return;
+        throw 'You must provide  a image'
     }
     if (!moviesInfo.id) {
-        res.status(400).json({ error: 'You must provide a id' });
-        return;
+        throw 'You must provide a id'
     }
   
     
@@ -86,7 +77,6 @@ router.post('/movie', async (req, res) => {
   
     try {
       await moviesData.remove(id);
-    //  res.json({"movieId": id, "deleted": true});
       res.render('admin/addsuccess', {"deleted": true})
     } catch (e) {
       res.sendStatus(500);

@@ -1,13 +1,14 @@
 const mongoCollections = require('../config/mongoCollections');
 const ticket = mongoCollections.session;
 const user = mongoCollections.users;
+//const movie = mongoCollections.movie;
 const { ObjectID, ObjectId } = require('mongodb');
-const { users } = require('../config/mongoCollections');
+const { users, movie } = require('../config/mongoCollections');
 
 let exportedMethods = {
     async get(id) {
         if (!id) throw 'You must provide an id to search';
-        if (typeof (id) !== 'string' || id == null) throw 'You must provide a correct id for session in get';
+    //    if (typeof (id) !== 'string' || id == null) throw 'You must provide a correct id for session in get';
         const sessionCollection = await ticket();
         let sessiongo = null;
         try {
@@ -89,6 +90,38 @@ let exportedMethods = {
         await sessionCollection.updateOne({ _id: parsedId }, { $set: newsessionseat });
     },
 
+
+
+    async updateHistoryPlay(userid, sessionid) {
+        let sessioninformation = await this.get(sessionid);
+        let moviename = await this.getmoviename(sessioninformation.movieId);
+        const userCollection = await users();
+        const theUser = await this.getuser(userid);
+
+        const newPlay = {
+            moviename: moviename,
+            movieId: sessioninformation.movieId,
+            sessionid: sessionid   
+        }
+
+        let parsedId = ObjectId(theUser._id);
+        theUser.historyPlay.push(newPlay);
+   
+        const updateInfo = await  userCollection.update(
+            {_id: parsedId}, 
+            {$set: {historyPlay : theUser.historyPlay} }
+            );
+        return updateInfo;    
+        
+    },
+
+    async getmoviename(movieid){
+        const movieCollection = await movie();
+        moviego = await movieCollection.findOne({ id: movie });
+        if (moviego === null) throw 'No session with that id';
+
+        return moviego.moviename;
+    } 
 
 
 
