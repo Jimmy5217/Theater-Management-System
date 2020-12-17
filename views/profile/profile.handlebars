@@ -36,7 +36,7 @@
          {{#each user.historyPlay}}
             <div>
                <form class = "commentForm" id="{{this}}" method="POST" action="/comments">
-                  <p>{{this}}</p>
+                  <p>{{this.movieName}}</p>
                   <label>Comment:</label>
                   <textarea cols="5" rows="20" class="comment" name="comment"></textarea>
                   <lable>Rating:</lable>
