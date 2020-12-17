@@ -67,6 +67,7 @@ router.post('/:id/book', async(req, res) => {
         let userName = req.session.AuthCookie.userInfo.userName;
         // console.log(userName);
         let movieId = req.params.id;
+        // console.log(movieId);
         const bookResult = await bookData.updateSeat(sessionId, bookSeat);
         const movieSellResult = await bookData.updateMovieSell(movieId, count);
         // console.log(movieSellResult);

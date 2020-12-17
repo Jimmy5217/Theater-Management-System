@@ -96,7 +96,7 @@ module.exports = {
             replaceData = [];
         }
         replaceData.push(newPlay);
-        console.log(replaceData);
+        // console.log(replaceData);
         const updateInfo = await  userCollection.update(
             {userName: userName}, 
             {$set: {historyPlay : replaceData} }
