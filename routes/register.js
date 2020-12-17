@@ -50,8 +50,8 @@ router.post('/', async (req, res) => {
 			DateOfBirthYear,
 			Password,
 			userName)
-		const entry = await loginData.login(userName, Password)
-		req.session.AuthCookie = entry;
+		const userInfo = await registerData.getUser(userName)
+		req.session.AuthCookie = {userInfo: userInfo}
 		res.redirect('/profile')
 	}catch(e){
 		res.status(500);
