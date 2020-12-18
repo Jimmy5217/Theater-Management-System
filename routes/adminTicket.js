@@ -7,7 +7,6 @@ const sessionData = require('../data/session');
 //order ticket
 router.post('/ticket', async (req, res) => {
     let requestBody = req.body;
-    console.dir(requestBody);
     try {
         const userid1 = await ticketData.getuser(requestBody.userId);
         if (!userid1) {
