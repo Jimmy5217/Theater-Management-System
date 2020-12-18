@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const moviesData = data.movies;
 const bookData = data.book;
+const loginData = data.login;
 
 router.get('/:id', async (req, res) => {
     // if (!req.params.id) throw 'You must specify an movie to book tickets';
@@ -72,6 +73,9 @@ router.post('/:id/book', async(req, res) => {
         const movieSellResult = await bookData.updateMovieSell(movieId, count);
         // console.log(movieSellResult);
         const historyPlayResult = await bookData.updateHistoryPlay(userName, movieId, sessionId, movieName,count);
+        const userId = req.session.AuthCookie.userInfo._id.toString()
+        const userInfo = await loginData.getById(userId)
+        req.session.AuthCookie = {userInfo: userInfo};
         res.redirect('/profile');
     } catch (e) {
       res.status(404).json({ error: 'Tickets book fail' });

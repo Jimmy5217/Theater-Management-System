@@ -17,9 +17,14 @@ async function main() {
     await movies.createMovie("Saving Private Ryan","The film follows United States Army Rangers Captain John H. Miller (Tom Hanks) and his squad (Tom Sizemore, Edward Burns, Barry Pepper, Giovanni Ribisi, Vin Diesel, Adam Goldberg, and Jeremy Davies) as they search for a paratrooper, Private First Class James Francis Ryan (Matt Damon), the last surviving brother of a family of four, with his three other brothers having been killed in action.","9.2","169 minutes","Action, plot, war, history","Tom Hanks,Edward Burns,Matt Damon,Tom Sizemore","2001",43,"https://upload.wikimedia.org/wikipedia/en/a/ac/Saving_Private_Ryan_poster.jpg",6);
 
     await register.register("James","LeBron","champion@stevens.edu","male","30","12","1984","4finalmvp","LBJ",true);
-    await register.register("Duncan","Tim","futureisyou@stevnes.edu","female","25","4","1976","5champion","5champion",false,[]);
-    await register.register("Jackson","Michael","god@stevens.edu","male","29","8","1967","greatsinger","greatsinger",false,[]);
-    await register.register("jack","chen","famousstar@google.com","female","1","3","1990","chenlong","chenlong",false,[]);
+    await register.register("Duncan","Tim","futureisyou@stevnes.edu","female","25","4","1976","5champion","5champion",false,[
+    	{movieName:'The Shawshank Redemption', sessionId:1, movieId:1, ticketCount:1},
+    	{movieName:'Saving Private Ryan', sessionId:2, movieId:6, ticketCount:1}]);
+    await register.register("Jackson","Michael","god@stevens.edu","male","29","8","1967","greatsinger","greatsinger",false,[
+    	{movieName:"Avengers: Endgame", sessionId:2, movieId:5, ticketCount:1}]);
+    await register.register("jack","chen","famousstar@google.com","female","1","3","1990","chenlong","chenlong",false,[
+    	{movieName:"3 Idiots", sessionId:2, movieId:3, ticketCount:1},
+    	{movieName:"The Fast and the Furious", sessionId:2, movieId:2, ticketCount:1}]);
 
     await comments.creatComment("4finalmvp","The Shawshank Redemption","It's very interesting, I like it","8.0");
     await comments.creatComment("5champion","The Shawshank Redemption","The plot is very rich, the actors perform very well","7.6");
